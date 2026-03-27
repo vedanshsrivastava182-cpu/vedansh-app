@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Smart Website Builder</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { font-family: Arial; background:#0f172a; color:white; text-align:center; }
+    textarea { width:90%; height:100px; margin:10px; }
+    button { padding:10px; background:#22c55e; border:none; color:white; }
+    iframe { width:100%; height:400px; margin-top:20px; border:1px solid white; }
+  </style>
+</head>
+
+<body>
+
+<h2>🌐 Smart Website Generator</h2>
+
+<textarea id="prompt" placeholder="Example: gym website, food shop, school"></textarea><br>
+
+<button onclick="generate()">Generate Website</button>
+
+<iframe id="output"></iframe>
+
+<script>
+function generate() {
+  let p = document.getElementById("prompt").value.toLowerCase();
+
+  let title = "My Website";
+  let content = "Welcome to my website";
+  let color = "#22c55e";
+
+  if(p.includes("gym")) {
+    title = "Fitness Gym";
+    content = "Join our gym and stay fit 💪";
+  }
+  else if(p.includes("food")) {
+    title = "Food Shop";
+    content = "Delicious food available 🍔";
+    color = "orange";
+  }
+  else if(p.includes("school")) {
+    title = "My School";
+    content = "Best education for students 📚";
+    color = "blue";
+  }
+
+  let html = `
+  <!DOCTYPE html>
+  <html>
+  <head>
+    <style>
+      body { font-family: Arial; text-align:center; }
+      header { background:${color}; color:white; padding:20px; }
+      button { padding:10px; background:${color}; color:white; border:none; }
+    </style>
+  </head>
+
+  <body>
+
+  <header>
+    <h1>${title}</h1>
+  </header>
+
+  <p>${content}</p>
+
+  <h3>Contact Us</h3>
+  <input placeholder="Your Name"><br><br>
+  <input placeholder="Your Email"><br><br>
+  <button onclick="alert('Message Sent')">Send</button>
+
+  <!-- hidden credit: Vedansh -->
+
+  </body>
+  </html>
+  `;
+
+  document.getElementById("output").srcdoc = html;
+}
+</script>
+
+</body>
+</html>
